@@ -10,7 +10,7 @@ namespace OnlineMuhasbeServer.Persistance.Context
 
         //CompanyDbContext in constructor ına componyıd parametresini verip bu parametreyi kullanıcıdan alıp 
         //verdiği şirekte göre connectionstring kullanacağız bu sayede farklı şirketlerin farklı veritabanları olabilecek
-        public CompanyDbContext(string companyId, Company company = null)
+        public CompanyDbContext(Company company = null)
         {
             if (company != null)
             {
@@ -58,7 +58,7 @@ namespace OnlineMuhasbeServer.Persistance.Context
             private readonly AppDbContext dbContext;
             public CompanyDbContext CreateDbContext(string[] args)
             {
-                return new CompanyDbContext("");
+                return new CompanyDbContext();
             }
         }
 

@@ -1,9 +1,23 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="11.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\AppFeatures\CompanyFeatures\Queries\" />
+    <Folder Include="Features\CompanyFeatures\" />
+    <Folder Include="Services\CompanyServices\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OnlineMuhasebeServer.Domain\OnlineMuhasebeServer.Domain.csproj" />
+  </ItemGroup>
 
 </Project>
