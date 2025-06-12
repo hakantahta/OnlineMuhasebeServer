@@ -7,6 +7,5 @@ namespace OnlineMuhasebeServer.Domain.CompanyEntities
         public String Code { get; set; }
         public String Name { get; set; }
         public Char Type { get; set; } //Ana Grup, Grup, Muavin
-        public String CompanyId { get; set; }
     }
 }
