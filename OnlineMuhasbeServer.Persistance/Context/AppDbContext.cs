@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using OnlineMuhasebeServer.Domain.Abstractions;
@@ -38,6 +39,15 @@ namespace OnlineMuhasbeServer.Persistance.Context
             return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
         }
 
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Ignore<IdentityUserLogin<string>>();
+            builder.Ignore<IdentityUserRole<string>>();
+            builder.Ignore<IdentityUserLogin<string>>();
+            builder.Ignore<IdentityUserClaim<string>>();
+            builder.Ignore<IdentityUserToken<string>>();
+            builder.Ignore<IdentityRoleClaim<string>>();
+        }
         public class AppDbContextFactory : IDesignTimeDbContextFactory<AppDbContext>
         {
             public AppDbContext CreateDbContext(string[] args)
