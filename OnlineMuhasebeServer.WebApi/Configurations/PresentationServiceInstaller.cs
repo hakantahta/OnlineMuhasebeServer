@@ -1,7 +1,6 @@
-﻿
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi.Models;
-using OnlineMuhasebeServer.Presentation;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+using OnlineMuhasebeServer.WebApi.Middleware;
 
 namespace OnlineMuhasebeServer.WebApi.Configurations
 {
@@ -9,9 +8,11 @@ namespace OnlineMuhasebeServer.WebApi.Configurations
     {
         public void Install(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddControllers().AddApplicationPart(typeof(AssemblyReference).Assembly);
+            services.AddScoped<ExceptionMiddleware>();
 
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+            services.AddControllers()
+                .AddApplicationPart(typeof(OnlineMuhasebeServer.Presentation.AssemblyReference).Assembly);
+            // Lsearn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen(setup =>
             {
