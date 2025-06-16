@@ -9,30 +9,27 @@ namespace OnlineMuhasebeServer.Persistance.Repositories
     public class CommandRepository<T> : ICommandRepository<T>
         where T : Entity
     {
-        private static readonly Func<CompanyDbContext, string, Task<T>>
-            GetByIdCompiled = 
+        private static readonly Func<CompanyDbContext, string, Task<T>> GetByIdCompiled =
             EF.CompileAsyncQuery((CompanyDbContext context, string id) =>
             context.Set<T>().FirstOrDefault(p => p.Id == id));
 
-        //Repository’nin veritabanı işlemlerini gerçekleştirebilmesi için bu context’e ihtiyacı vardır.
         private CompanyDbContext _context;
 
-        public DbSet<T> Entity {  get; set; }
+        public DbSet<T> Entity { get; set; }
 
         public void SetDbContextInstance(DbContext context)
         {
             _context = (CompanyDbContext)context;
-            Entity = _context.Set<T>(); 
+            Entity = _context.Set<T>();
+        }
+        public async Task AddAsync(T entity, CancellationToken cancellationToken)
+        {
+            await Entity.AddAsync(entity, cancellationToken);
         }
 
-        public async Task AddAsync(T entity)
+        public async Task AddRangeAsync(IEnumerable<T> entities, CancellationToken cancellationToken)
         {
-            await Entity.AddAsync(entity);
-        }
-
-        public async Task AddRangeAsync(IEnumerable<T> entities)
-        {
-            await Entity.AddRangeAsync(entities);
+            await Entity.AddRangeAsync(entities, cancellationToken);
         }
 
         public void Remove(T entity)

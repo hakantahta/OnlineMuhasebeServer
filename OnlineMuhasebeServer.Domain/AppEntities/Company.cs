@@ -14,8 +14,8 @@ namespace OnlineMuhasebeServer.Domain.AppEntities
         //veritabanı bilgileri
         public String ServerName { get; set; }
         public String DatabaseName { get; set; }
-        public String UserId { get; set; }
-        public String Password { get; set; }
+        public String ServerUserId { get; set; }
+        public String ServerPassword { get; set; }
        
     }
 }
