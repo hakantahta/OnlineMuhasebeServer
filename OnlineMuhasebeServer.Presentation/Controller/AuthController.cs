@@ -3,10 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using OnlineMuhasebeServer.Application.Features.AppFeatures.AppUserFeatures.Login;
 using OnlineMuhasebeServer.Presentation.Abstraction;
 
-using Microsoft.AspNetCore.Mvc;
-using OnlineMuhasebeServer.Application.Features.AppFeatures.AppUserFeatures.Login;
-using OnlineMuhasebeServer.Presentation.Abstraction;
-
 namespace OnlineMuhasebeServer.Presentation.Controller
 {
     public class AuthController : ApiController
@@ -16,9 +12,9 @@ namespace OnlineMuhasebeServer.Presentation.Controller
         }
 
         [HttpPost("[action]")]
-        public async Task<IActionResult> Login(LoginRequest request)
+        public async Task<IActionResult> Login(LoginCommand request)
         {
-            LoginResponse response = await _mediator.Send(request);
+            LoginCommandResponse response = await _mediator.Send(request);
             return Ok(response);
         }
     }
